@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jiehfut</groupId>
+  <artifactId>d-maven-web-mavenarchetype</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>d-maven-web-mavenarchetype Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.24</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.10.2</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <!--自我依赖，这样的话直接打包会报错，因为 maven 在本地仓库中找不到去中央仓库找也找不到，
+        会报错，需要将这个项目打包放进自己的本地仓库，在 c-maven-web-plugin 项目中通过 mvn install 指令将 c-maven-web-plugin 安装在自己本地仓库
+        实际上要打包成为jar包才能被使用，打成war包是会报错的-->
+<!-- <dependency>
+      <groupId>com.jiehfut</groupId>
+      <artifactId>c-maven-web-plugin</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>-->
+
+
+  </dependencies>
+  <build>
+    <finalName>d-maven-web-mavenarchetype</finalName>
+
+    <!-- jdk17 和 war包版本插件不匹配 -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
