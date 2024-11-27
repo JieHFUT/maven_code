@@ -7,23 +7,49 @@
   <version>1.0-SNAPSHOT</version>
   <name>d-maven-web-mavenarchetype Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!--设置一个自定义版本属性，来统一管理版本需求相同的依赖，例如 spring 的几个版本设置相同版本-->
+    <!--统一规定依赖版本-->
+    <junit.version>5.10.2</junit.version>
+
+  </properties>
+
+
+
+
+
+
+
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+    <!--类似这种默认依赖范围的，在编译，测试，运行的时候都可以使用，默认 compile-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.2.8</version>
+    </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.24</version>
+      <version>1.18.30</version>
       <scope>provided</scope>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+    <!--此依赖的范围是 test，所以在打 war 包的时候就不会将其打包进去 -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.2</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-
 
     <!--自我依赖，这样的话直接打包会报错，因为 maven 在本地仓库中找不到去中央仓库找也找不到，
         会报错，需要将这个项目打包放进自己的本地仓库，在 c-maven-web-plugin 项目中通过 mvn install 指令将 c-maven-web-plugin 安装在自己本地仓库
@@ -33,7 +59,6 @@
       <artifactId>c-maven-web-plugin</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>-->
-
 
   </dependencies>
   <build>
@@ -48,5 +73,9 @@
       </plugin>
     </plugins>
   </build>
+
+
+
+
 
 </project>
