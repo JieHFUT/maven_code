@@ -21,10 +21,6 @@
 
 
 
-
-
-
-
   <dependencies>
     <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
     <!--类似这种默认依赖范围的，在编译，测试，运行的时候都可以使用，默认 compile-->
@@ -60,9 +56,35 @@
       <version>1.0-SNAPSHOT</version>
     </dependency>-->
 
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.28</version>
+    </dependency>
+
+
   </dependencies>
+
   <build>
-    <finalName>d-maven-web-mavenarchetype</finalName>
+    <!--maven 工程 build 构建相关信息设置-->
+    <!--自定义打包名词-->
+    <finalName>d-maven-web-mavenarchetype-1.0</finalName>
+    <!--制定构建打包时，指定包含文件格式和排除文件-->
+    <!--一般来说没有按照指定目录放置的配置文件就不会被打包到 target 中-->
+    <!--所以遇到这种情况，需要自己去配置打包目录-->
+    <!--设置要打包的资源位置 resources 标签-->
+    <resources>
+      <resource>
+        <!--设置资源所在目录-->
+        <directory>src/main/java</directory>
+        <includes>
+          <!--设置包含的资源类型：任意包下的任意的 .xml 文件-->
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+
 
     <!-- jdk17 和 war包版本插件不匹配 -->
     <plugins>
@@ -70,6 +92,19 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.2.2</version>
+      </plugin>
+      <!-- tomcat插件 -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <!--Tomcat 的一些配置-->
+        <configuration>
+          <port>8090</port>
+          <path>/</path>
+          <uriEncoding>UTF-8</uriEncoding>
+          <server>tomcat7</server>
+        </configuration>
       </plugin>
     </plugins>
   </build>
