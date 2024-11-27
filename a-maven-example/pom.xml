@@ -20,8 +20,36 @@
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--管理我们这个工程的部署（deploy）的位置-->
+    <!--清理-编译-测试-报告-打包-安装-部署-->
+    <!--以下设置是将构建打包好的项目部署到 maven 私服中-->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-mine</id>
+            <name>Nexus Snapshot</name>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    
+
 
 
 </project>

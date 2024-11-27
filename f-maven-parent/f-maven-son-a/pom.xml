@@ -18,7 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-
     <!--子工程自己设置需要继承那些依赖，和平常的依赖不同，不再需要设置版本号-->
     <dependencies>
         <dependency>
