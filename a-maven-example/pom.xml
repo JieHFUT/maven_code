@@ -9,7 +9,7 @@
     <artifactId>a-maven-example</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!--设置打包方式，不设置默认 jar 包-->
+    <!--设置打包方式，不设置默认 jagoir 包-->
     <packaging>jar</packaging>
 
     <dependencies>
